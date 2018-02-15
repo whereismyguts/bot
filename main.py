@@ -2,9 +2,9 @@
 import telebot
 from telebot import types
 import os
-
+print('init')
 yarr = os.environ.get('YARR', None)
-
+print(yarr)
 bot = telebot.TeleBot(yarr)
 
 @bot.message_handler(commands=['fuck'])
@@ -14,6 +14,7 @@ def fuck(message):
 
 @bot.message_handler(commands=['test'])
 def test(message):
+    print('tested')
     sent = bot.send_message(message.chat.id, "you've pressed 'test'")
 
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=5)
@@ -27,6 +28,7 @@ def test(message):
     bot.register_next_step_handler(sent_method, choosen)
 
 def choosen(message):
+    print('ok')
     sent_method = bot.send_message(message.chat.id, "thanks for rate (%r)"%("*"*int(message.text)), reply_markup=types.ReplyKeyboardRemove())
    # bot.register_next_step_handler(sent_method, choosen)
     
@@ -34,6 +36,7 @@ def next_step(message):
     bot.send_message(message.chat.id, "message sent from 'next_step' callback")
 
 def new_game():
+    print('start')
     # bot.add_message_handler({'fooock' : 'yoooou'})
     bot.polling()
 
