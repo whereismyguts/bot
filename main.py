@@ -39,4 +39,7 @@ def new_game():
     print('start')
     # bot.add_message_handler({'fooock' : 'yoooou'})
     bot.polling()
+    
+if __name__ == '__main__':  
+    new_game()
 
